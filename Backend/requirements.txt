@@ -1,8 +1,8 @@
-# FastAPI and server
+# API and server
 fastapi
 uvicorn[standard]
 
-# Langchain & vector DB
+# Langchain and vector store
 langchain
 langchain-community
 chromadb
@@ -14,10 +14,10 @@ torch
 requests
 beautifulsoup4
 
-# Google Generative AI (Gemini)
+# Google Gemini API
 google-generativeai
 
-# Audio and TTS
+# Text-to-speech and audio handling
 gTTS
 pygame
 pydub
@@ -25,14 +25,12 @@ whisper
 speechrecognition
 pyaudio
 
-# Email & scheduling
+# Email + scheduling
 apscheduler
 
-# Middleware
+# Middleware and misc
 python-multipart
 aiofiles
 httpx
 jinja2
-
-# CORS & environment
 python-dotenv
