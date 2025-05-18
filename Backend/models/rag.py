@@ -18,6 +18,7 @@ def extract_text_from_website(url):
         print(f"Error fetching {url}: {e}")
         return "Error fetching content."
 
+
 # URLs for maternity guidance
 career_urls = [
     # maternity hopitals in pune
@@ -76,6 +77,7 @@ genai.configure(api_key="AIzaSyDlrKlKH2GkELdceGC9LpagYmkbvJfzyck")
 
 conversation_history = []
 
+
 def get_best_maternity_guide(query, results, conversation_history):
     """Fetches the best response based on AI guidance and retrieved documents."""
     if not results["documents"]:
@@ -85,14 +87,14 @@ def get_best_maternity_guide(query, results, conversation_history):
     conversation_history.append(f"User Query: {query}")
 
     system_prompt = """
-    
+
     You are a helpful assistant specializing in pregnancy and postpartum care.
     Your task is to provide accurate and friendly responses based on the user's query and the provided information.
 
     1. If the user says "hi", "hello", "hey", or similar greetings → Respond with a friendly greeting.
     2. If the user asks about pregnancy, babies, or mothers → Provide medical-related information.
     3. If the user asks about anything else → Give a relevant response based on the question.
-    
+
     ALWAYS understand the user's intent before responding.
     NEVER assume a topic unless the user clearly asks for it.
 
@@ -111,7 +113,7 @@ def get_best_maternity_guide(query, results, conversation_history):
 
     # Clean up the response to ensure proper formatting
     formatted_response = response.text.strip()
-    
+
     '''# Add final note if not present
     if "consult" not in formatted_response.lower():
         formatted_response += "\n\n> **Note:** Always consult your healthcare provider for personalized medical advice."

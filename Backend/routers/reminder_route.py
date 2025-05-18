@@ -1,7 +1,8 @@
 from fastapi import APIRouter
-from Backend.models.remainder import schedule_email
+from models.remainder import schedule_email
 
 router = APIRouter()
+
 
 @router.post("/schedule_reminder/")
 def schedule_reminder(reminder_text: str, time_str: str):

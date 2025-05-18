@@ -4,8 +4,10 @@ from ..models.rag import collection, get_best_maternity_guide
 
 router = APIRouter()
 
+
 class QueryRequest(BaseModel):
     message: str
+
 
 @router.post("/query_rag/")
 async def query_rag(request: QueryRequest):
@@ -15,14 +17,14 @@ async def query_rag(request: QueryRequest):
             query_texts=[request.message],
             n_results=3
         )
-        
+
         # Get response using the RAG model
         response = get_best_maternity_guide(
             query=request.message,
             results=results,
-            conversation_history=[]  # You can maintain conversation history if needed
+            conversation_history=[]
         )
-        
+
         return {"response": response}
     except Exception as e:
         print(f"Error in RAG query: {str(e)}")  # Log the error

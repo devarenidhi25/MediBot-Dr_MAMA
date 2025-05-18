@@ -6,6 +6,7 @@ from gtts import gTTS
 import pygame
 import time
 
+
 def text_to_speech(response):
     """Convert AI-generated response to speech and play it."""
     if not response.strip():
@@ -14,7 +15,7 @@ def text_to_speech(response):
 
     filename = "response.mp3"
 
-    tts = gTTS(text=response, lang="en")  
+    tts = gTTS(text=response, lang="en")
     tts.save(filename)
 
     pygame.mixer.init()
@@ -24,7 +25,8 @@ def text_to_speech(response):
     while pygame.mixer.music.get_busy():
         time.sleep(0.1)
 
-    pygame.mixer.quit()  
+    pygame.mixer.quit()
+
 
 def extract_location_from_query(query):
     """
@@ -36,6 +38,7 @@ def extract_location_from_query(query):
     if location_match:
         return location_match.group(1).title()  # Convert to title case
     return query.title()  # If no "near", assume the last word is location
+
 
 def main():
     while True:
@@ -53,11 +56,11 @@ def main():
 
         elif user_choice == "exit":
             print("Goodbye!")
-            break  
+            break
 
         else:
             print("Invalid input. Please type 'speak' or 'type'.")
-            continue  
+            continue
 
         # Check if user is asking for hospital locations
         if "maternity hospital" in user_query.lower() or "hospital near" in user_query.lower():
@@ -105,6 +108,7 @@ def main():
                 text_to_speech(no_info_msg)
             else:
                 print("Skipping text-to-speech conversion.")
+
 
 if __name__ == "__main__":
     main()

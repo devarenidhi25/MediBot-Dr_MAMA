@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from Backend.models.whisper import transcribe_audio
+from models.whisper import transcribe_audio
 import tempfile
 import os
 import logging
@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
 
 @router.post("/record/")
 async def transcribe_stream(file: UploadFile = File(...)):
@@ -35,16 +36,16 @@ async def transcribe_stream(file: UploadFile = File(...)):
             else:
                 # Write content directly for WAV files
                 temp_file.write(content)
-            
+
             temp_path = temp_file.name
             logger.info(f"Saved audio to: {temp_path}")
 
         # Transcribe
         result = transcribe_audio(temp_path)
-        
+
         if result == "No speech detected":
             return {"transcription": "No speech detected", "status": "warning"}
-            
+
         return {"transcription": result, "status": "success"}
 
     except Exception as e:

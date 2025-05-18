@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routers import reminder_route, whisper_route, hospital_route, rag_route, auth_route
 from fastapi.responses import RedirectResponse
-from fastapi.middleware.cors import CORSMiddleware  
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 app = FastAPI(title="MediBot API")
@@ -13,6 +13,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 @app.get("/")
 async def root():
