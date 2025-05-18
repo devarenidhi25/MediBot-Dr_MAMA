@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from ..models.rag import collection, get_best_maternity_guide
+from models.rag import collection, get_best_maternity_guide
 
 router = APIRouter()
 
