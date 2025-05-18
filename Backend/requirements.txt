@@ -23,7 +23,7 @@ pygame
 pydub
 whisper
 speechrecognition
-pyaudio
+
 
 # Email + scheduling
 apscheduler
