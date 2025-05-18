@@ -1,7 +1,7 @@
 import re
-from Backend.models import rag
-from Backend.models import whisper
-from Backend.models.hospital_finder import get_maternity_hospitals_nearby  # Import function
+from models import rag
+from models import whisper
+from models.hospital_finder import get_maternity_hospitals_nearby  # Import function
 from gtts import gTTS
 import pygame
 import time
