@@ -1,11 +1,13 @@
 from fastapi import FastAPI
-from routers import reminder_route, whisper_route, hospital_route, rag_route, auth_route
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
 
-app = FastAPI(title="MediBot API")
+# ONLY include light routes for now
+from routers import reminder_route, hospital_route, auth_route  # omit whisper & rag
+
+app = FastAPI(title="MediBot Minimal API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -15,19 +17,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/")
 async def root():
     return RedirectResponse(url="/docs")
 
-# Include routers
+# Only essential routers
 app.include_router(reminder_route.router, prefix="/reminder", tags=["Reminders"])
-app.include_router(whisper_route.router, prefix="/api/transcribe", tags=["Audio Transcription"])
 app.include_router(hospital_route.router, prefix="/hospital", tags=["Hospital Finder"])
-app.include_router(rag_route.router, prefix="/rag", tags=["RAG Queries"])
-app.include_router(whisper_route.router, prefix="/api/speech", tags=["Speech Recognition"])
 app.include_router(auth_route.router, prefix="/api", tags=["Authentication"])
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
