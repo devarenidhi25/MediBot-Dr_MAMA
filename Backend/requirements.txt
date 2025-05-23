@@ -1,5 +1,36 @@
+# === API and server ===
 fastapi
 uvicorn[standard]
+
+# === Langchain and vector store ===
+langchain
+langchain-community
+chromadb
+sentence-transformers
+transformers
+torch
+
+# === Web scraping ===
 requests
 beautifulsoup4
+
+# === Google Gemini API ===
+google-generativeai
+
+# === Text-to-speech and audio handling ===
+gTTS
+pygame
+pydub
+SpeechRecognition
+# ✅ Use the official Whisper repo from GitHub
+git+https://github.com/openai/whisper.git
+
+# === Email + scheduling ===
+apscheduler
+
+# === Middleware and misc ===
+python-multipart
+aiofiles
+httpx
+jinja2
 python-dotenv
