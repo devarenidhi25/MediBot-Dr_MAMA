@@ -3,12 +3,13 @@ from routers import reminder_route, whisper_route, hospital_route, rag_route, au
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
+import os
 
 app = FastAPI(title="MediBot API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["https://dr-mama.vercel.app", "http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -27,5 +28,7 @@ app.include_router(rag_route.router, prefix="/rag", tags=["RAG Queries"])
 app.include_router(whisper_route.router, prefix="/api/speech", tags=["Speech Recognition"])
 app.include_router(auth_route.router, prefix="/api", tags=["Authentication"])
 
+
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
